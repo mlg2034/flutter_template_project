@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:template_project/src/feature/example_feature/bloc/example_bloc.dart';
 
 //WIDGET FOR BLOC REGISTRATION
 class MultiBlocWrapper extends StatelessWidget {
@@ -10,6 +11,7 @@ class MultiBlocWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [], child: Builder(builder: (context) => child));
+        providers: [BlocProvider(create: (context) => ExampleBloc())],
+        child: Builder(builder: (context) => child));
   }
 }

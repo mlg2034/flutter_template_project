@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:template_project/core/constants/app_constants.dart';
+import 'package:template_project/core/services/secure_service.dart';
 
 class DioClient {
   static final DioClient _singleton = DioClient._internal();
@@ -25,6 +26,9 @@ class DioClient {
 
     _dio.options = options;
     _dio.interceptors.add(_DioInterceptor());
+    String?authToken = await SecureService().getAccessToken();
+    _dio.options.headers['Authorization']='Bearer $authToken';
+    log('Bearer $authToken' , name: 'DioClient');
   }
 
   Dio get dio => _dio;
